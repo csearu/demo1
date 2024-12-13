@@ -1,0 +1,27 @@
+{% extends 'Base.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stocks</title>
+    <h1>Stock Home Page</h1>
+</head>
+<body>
+
+    <!-- {{ data }} -->
+
+    {% for language, details in data.items %}
+    <li><strong>{{ language }}</strong></li>
+    <ul>
+        {% for key, value in details.items %}
+            <li>{{ key }}: {{ value }}</li>
+        {% endfor %}
+    </ul>
+    {% endfor %}
+     
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'Base.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stocks</title>
+    <h1>Home Page</h1>
+</head>
+<body>
+
+    {% if ticker %}
+        {{ ticker }}
+    {% endif %}
+    <!-- {{ api }} -->
+
+    {% if api %}
+        {% if api == "Error..." %}
+            There was a problem with your ticker symbol,
+            please try again...
+        {% else %}
+            <!-- Loop through the api dictionary -->
+            {% for key,value in api.items %}
+                {% if value is mapping %}<!-- Check if value is a nested dictionary -->
+                    {{ key }}
+                    {% for sub_key, sub_value in value.items %}
+                        {{ sub_key }} : {{ sub_value }}
+                    {% endfor %}
+                {% else %}
+                    {{ key }} : {{ value }} <br/>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    {% endif %}
+     
+</body>
+</html>
+{% endblock %}
