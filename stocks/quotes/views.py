@@ -7,7 +7,7 @@ def home(request):
 
     if request.method == 'POST':
         ticker = request.POST['ticker']
-        url = 'https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=IBM&interval=5min&apikey=QFX39C38SS9D090O'
+        url = f"https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol={ticker}&interval=5min&apikey=QFX39C38SS9D090O"
         api_request = requests.get(url)
         try:
             api = json.loads(api_request.content)

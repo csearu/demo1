@@ -16,14 +16,13 @@
     {% endif %}
     <!-- {{ api }} -->
 
-    {% if api %}
+    <!-- {% if api %}
         {% if api == "Error..." %}
             There was a problem with your ticker symbol,
             please try again...
         {% else %}
-            <!-- Loop through the api dictionary -->
             {% for key,value in api.items %}
-                {% if value is mapping %}<!-- Check if value is a nested dictionary -->
+                {% if value is mapping %}
                     {{ key }}
                     {% for sub_key, sub_value in value.items %}
                         {{ sub_key }} : {{ sub_value }}
@@ -33,7 +32,16 @@
                 {% endif %}
             {% endfor %}
         {% endif %}
-    {% endif %}
+    {% endif %} -->
+
+    {% for language, details in api.items %}
+    <li><strong>{{ language }}</strong></li>
+    <ul>
+        {% for key, value in details.items %}
+            <li>{{ key }}: {{ value }}</li>
+        {% endfor %}
+    </ul>
+    {% endfor %}
      
 </body>
 </html>
