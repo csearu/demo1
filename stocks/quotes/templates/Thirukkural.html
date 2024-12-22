@@ -1,0 +1,52 @@
+{% extends 'Base.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thirukkural</title>
+    <h1>Thirukkural Home Page</h1>
+</head>
+<body>
+    <form action="{% url 'Thirukkural' %}" class="form-inline my-2 my-lg-0" method="POST">
+        {% csrf_token %}
+        <!-- <input class="form-control mr-sm-2" type="search" placeholder="Add Ticker to Portfolio" aria-label="Search" name="ticker">
+        <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Add Stock</button> -->
+      </form><br/>
+      <!-- <table class="table table-bordered border-primary" > -->
+        <!-- <table class="table table-hover" > -->
+    <table class=  "table table-bordered border-primary">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col">Number</th>
+            <th scope="col">Kural</th>
+            <th scope="col">Translation</th>
+            <th scope="col">Author's Explanation</th>
+            <th scope="col">Explanation</th>
+            <th scope="col">Couplet</th>
+          </tr>
+        </thead>
+        <tbody class="table-group-divider">       
+                    {% if data %}
+                        {% for language, details in data.items %}
+                            {% for value in details %}
+                                {% if value.Number %}
+                                <tr class="table-primary">
+                                    <th scope="row">{{ value.Number }}</th>
+                                    <th scope="row">{{ value.Line1 }} <br/> {{ value.Line2 }}</th>
+                                    <th scope="row">{{ value.Translation }}</th>
+                                    <th scope="row">டாக்டர் மு.வரதராசனார் - {{ value.mv }} <br/> சாலமன் பாப்பையா - {{ value.sp }} <br/> மு. கருணாநிதி - {{ value.mk }}</th>
+                                    <th scope="row">{{ value.explanation }}</th>
+                                    <th scope="row">{{ value.couplet }}</th>
+                                </tr>
+                                {% endif %}
+                            {% endfor %}  
+                        {% endfor %}
+                    {% endif %}
+        </tbody> 
+      </table>   
+</body>
+</html>
+{% endblock %}
