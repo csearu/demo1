@@ -1,0 +1,42 @@
+{% extends 'Base.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Stock</title>
+</head>
+<body>
+    <h1>Delete Stock</h1>
+    <br/>
+    <!-- {{ ticker }} -->
+    <form action="{% url 'Delete Stock' %}" class="form-inline my-2 my-lg-0" method="POST">
+        {% csrf_token %}
+        <!-- <input class="form-control mr-sm-2" type="search" placeholder="Add Ticker to Portfolio" aria-label="Search" name="ticker">
+        <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Add Stock</button> -->
+      </form><br/><br/>
+      <table class="table table-bordered border-primary">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col">Ticker</th>
+            <th scope="col">Remove</th>
+          </tr>
+        </thead>
+        <tbody class="table-group-divider">
+        {% if ticker %}           
+                    {% for item in ticker %}
+                        <tr>
+                            <th scope="row">{{ item }}</th>
+                            <td><a href="{% url 'delete' item.id %}" class="btn btn-secondary">Delete Stock</a></td>
+                        </tr>
+                    {% endfor %}   
+        {% else %}
+                  You don't have any stocks...      
+        {% endif %} 
+        </tbody>
+      </table>
+</body>
+</html>
+{% endblock %}

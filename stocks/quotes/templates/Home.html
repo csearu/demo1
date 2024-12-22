@@ -35,12 +35,12 @@
     {% endif %} -->
 
     {% for language, details in api.items %}
-    <li><strong>{{ language }}</strong></li>
-    <ul>
+    <li><strong>{{ language }} : {{ details }}</strong></li>
+    <!-- <ul>
         {% for key, value in details.items %}
             <li>{{ key }}: {{ value }}</li>
         {% endfor %}
-    </ul>
+    </ul> -->
     {% endfor %}
      
 </body>
